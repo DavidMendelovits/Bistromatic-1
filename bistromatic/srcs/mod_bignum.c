@@ -6,8 +6,15 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 12:55:27 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/10 12:55:28 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/11 18:56:52 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
+#include "bistromatics.h"
+
+bignum  *mod_bignum(bignum **nbr1, bignum **nbr2)
+{
+	*nbr2 = 0;
+	return (*nbr1);
+}

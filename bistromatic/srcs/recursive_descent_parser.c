@@ -6,7 +6,7 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 11:20:20 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/10 14:13:55 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/11 19:04:21 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 /* grabNbr grabs the "nbr" from the expression if it's there, otherwise it returns a 0 string. */
 /* Goes past starting zeros and spaces. This function handles "negatives"as a minus and nothing = zero, 
  * so it's fine */
-char	*grabNbr(char **expression)
+bignum	*grabNbr(char **expression)
 {
-	char *nbr;
+	bignum *nbr;
 	int count;
 
 	count = 0;
@@ -26,28 +26,15 @@ char	*grabNbr(char **expression)
 		(*expression)++;
 	while ((*expression)[count] >= '0' && (*expression)[count] <= '9')
 		count++;
-	if (count == 0)
-	{
-		nbr = malloc(sizeof(char) * 2);
-		nbr[1] = '\0';
-		nbr[0] = '0';
-		return (nbr);
-	}
-	nbr = malloc(sizeof(char) * (count + 1));
-	nbr[count] = '\0';
-	count = 0;
-	while (**expression >= '0' && **expression <= '9')
-	{
-		nbr[count] = **expression;
-		(*expression)++;
-	}
+	nbr = malloc(sizeof(bignum));
+	setNbr(nbr, count, expression);
 	return (nbr);
 }
 
 /* Returns nbr or calls parseSum if it encounters a parentheses, which will have its own priority */
-char	*parseAtom(char **expression)
+bignum	*parseAtom(char **expression)
 {
-	char *nbr;
+	bignum *nbr;
 	
 	while (**expression == ' ')
 		(*expression)++;
@@ -63,10 +50,10 @@ char	*parseAtom(char **expression)
 }
 
 /* Handles multiplication/division/modulus before addition/subtraction. */
-char	*parseProduct(char **expression)
+bignum	*parseProduct(char **expression)
 {
-	char *nbr1;
-	char *nbr2;
+	bignum *nbr1;
+	bignum *nbr2;
 	char op;
 
 	nbr1 = parseAtom(expression);
@@ -90,10 +77,10 @@ char	*parseProduct(char **expression)
 }
 
 /* Handles addition/subtraction */
-char	*parseSum(char **expression)
+bignum *parseSum(char **expression)
 {
-	char *nbr1;
-	char *nbr2;
+	bignum *nbr1;
+	bignum *nbr2;
 	char op;
 
 	nbr1 = parseProduct(expression);
@@ -116,8 +103,8 @@ char	*parseSum(char **expression)
 
 void	recursive_descent_parser(char *expression)
 {
-	char *result;
+	bignum *result;
 	
 	result = parseSum(&expression);
-	ft_putstr(result);
+	ft_putstr(result->nbr);
 }

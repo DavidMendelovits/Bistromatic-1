@@ -6,11 +6,50 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:53:51 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/10 14:15:06 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/11 18:53:17 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bistromatics.h"
+
+char	*ft_strnew(size_t size)
+{
+	char *str;
+	size_t i;
+
+	i = 0;
+	str = malloc(sizeof(char) * (size + 1));
+	if (str == 0)
+		return (NULL);
+	else
+	{
+		while (i <= size)
+			str[i++] = 0;
+	}
+	return (str);
+}
+
+char	*ft_strdup(char *str)
+{
+	int i;
+	char *s2;
+
+	i = 0;
+	while (str[i])
+		i++;
+	i++;
+	s2 = malloc(sizeof(char) * i);
+	if (!s2)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		s2[i] = str[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
+}
 
 int	ft_strlen(char *str)
 {
@@ -20,24 +59,6 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	set_bignumstruct(bignum *nbr1, bignum *nbr2, char *num1, char *num2)
-{
-	if (num1[0] == '0')
-		nbr1->sign = 0;
-	else if (num1[0] == '-')
-		nbr1->sign = -1;
-	else
-		nbr1->sign = 1;
-	if (num2[0] == '0')
-		nbr2->sign = 0;
-	else if (num2[0] == '-')
-		nbr2->sign = -1;
-	else
-		nbr2->sign = 1;
-	nbr1->lastdigit = ft_strlen(num1);
-	nbr2->lastdigit = ft_strlen(num2);
 }
 
 int	ft_atoi(char *str)

@@ -6,7 +6,7 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:04:12 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/10 13:14:54 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/11 19:26:43 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define BISTROMATICS_H
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct s_bignum
+{
+	int sign;
+	int i;
+	char *nbr;
+}	bignum;
 
 /* Main function */
 int main(int argc, char **argv);
@@ -23,39 +30,58 @@ void    ft_putstr(char *str);
 void    ft_putchar(char c);
 void    ft_putnbr(int nbr);
 
-/* Misc. functions */
-int ft_atoi(char *str);
-
-/* Calculation parsing functions to ensure eval expression works 
-void	recursive_descent_parser(char *expression);
-int parseFactor(char **expression);
-int parseProduct(char **expression);
-int parseSum(char **expression);
-int	ft_matoi(char **str); 
-*/
-
 /* Remake of calculation parsing functions to handle string instead of ints */
-char    *grabNbr(char **expression);
-char    *parseAtom(char **expression);
-char    *parseProduct(char **expression);
-char    *parseSum(char **expression);
+bignum    *grabNbr(char **expression);
+bignum    *parseAtom(char **expression);
+bignum    *parseProduct(char **expression);
+bignum    *parseSum(char **expression);
 void    recursive_descent_parser(char *expression);
 
 /* Validation of the string */
 
 
-/* Integer handling. For sign, 1 is positive, 0 is zero, -1 is negative. */
-typedef struct s_bignum
-{
-	int sign;
-	unsigned int lastdigit;
-}				bignum;
-char	*add_bignum(char **nbr1, char **nbr2);
-char	*sub_bignum(char **nbr1, char **nbr2);
-char	*mult_bignum(char **nbr1, char **nbr2);
-char	*div_bignum(char **nbr1, char **nbr2);
-char	*mod_bignum(char **nbr1, char **nbr2);
+/* Integer handling. For sign, 1 is positive, 0 is zero, -1 is negative. 
+ * In the struct, i stands for index of the final digit. */
+bignum	*add_bignum(bignum **nbr1, bignum **nbr2);
+bignum  *zero_add(bignum **nbr1, bignum **nbr2);
+void    add_num(bignum *nbr1, bignum *nbr2, bignum *resultstruct);
 
+
+bignum	*sub_bignum(bignum **nbr1, bignum **nbr2);
+
+
+
+bignum	*mult_bignum(bignum **nbr1, bignum **nbr2);
+
+
+
+bignum	*div_bignum(bignum **nbr1, bignum **nbr2);
+
+
+
+bignum	*mod_bignum(bignum **nbr1, bignum **nbr2);
+
+
+/* Functions for bignum */
+char    *remalloc(char **result);
+void    zero_padif(bignum *nbr1, bignum *nbr2);
+void    zero_pad(bignum *nbr1, bignum *nbr2);
+
+/* Misc. functions */
+int ft_atoi(char *str);
+void    set_bignumstruct(bignum *nbr1, bignum *nbr2, char *num1, char *num2);
+int ft_strlen(char *str);
+char	*ft_strdup(char *str);
+char    *ft_strnew(size_t size);
+
+/* Misc. functions for bignum */
+void	zero_pad(bignum *nbr1, bignum *nbr2);
+void	zero_padif(bignum *nbr1, bignum *nbr2);
+
+/* Misc. functions for setting struct */
+void	set_index_sign(bignum *nbrstruct);
+void	setNbr(bignum *nbrstruct, int count, char **expression);
+void	del_struct(bignum **nbr);
 /* Base Handling */
 
 #endif
