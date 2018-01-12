@@ -6,7 +6,7 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 11:20:20 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/11 19:04:21 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/12 12:40:48 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,26 @@ bignum	*grabNbr(char **expression)
 {
 	bignum *nbr;
 	int count;
+	static int counter;
+	int neg;
 
 	count = 0;
+	neg = 1;
 	while (**expression == '0' || **expression == ' ')
 		(*expression)++;
+	if (counter != 0)
+	{
+		if (**expression == '-' && (*(*expression - 1) == '-' || *(*expression - 1) == '+') && (*(*expression + 1) >= '0' && *(*expression + 1) <= '9'))
+		{
+			neg *= -1;
+			(*expression)++;
+		}
+	}
 	while ((*expression)[count] >= '0' && (*expression)[count] <= '9')
 		count++;
 	nbr = malloc(sizeof(bignum));
-	setNbr(nbr, count, expression);
+	setNbr(nbr, count, expression, neg);
+	counter++;
 	return (nbr);
 }
 
@@ -106,5 +118,7 @@ void	recursive_descent_parser(char *expression)
 	bignum *result;
 	
 	result = parseSum(&expression);
+	if (result->sign == -1)
+		write(1, "-", 1);
 	ft_putstr(result->nbr);
 }

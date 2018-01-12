@@ -6,11 +6,28 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 12:43:13 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/11 18:53:42 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/11 23:37:01 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bistromatics.h"
+
+int		nbrcompare(bignum *nbr1, bignum *nbr2)
+{
+	int i;
+
+	i = 0;	
+	while ((nbr1->nbr)[i])
+	{
+		if ((nbr1->nbr)[i] > (nbr2->nbr)[i])
+			return (1);
+		else if ((nbr1->nbr)[i] < (nbr2->nbr)[i])
+			return (0);
+		else
+			i++;	
+	}
+	return (1);
+}
 
 char	*remalloc(char **result)
 {

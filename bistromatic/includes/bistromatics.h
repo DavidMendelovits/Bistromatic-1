@@ -6,7 +6,7 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:04:12 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/11 19:26:43 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/12 00:35:03 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,28 @@ void    recursive_descent_parser(char *expression);
 
 /* Integer handling. For sign, 1 is positive, 0 is zero, -1 is negative. 
  * In the struct, i stands for index of the final digit. */
+
+/* Addition */
 bignum	*add_bignum(bignum **nbr1, bignum **nbr2);
 bignum  *zero_add(bignum **nbr1, bignum **nbr2);
-void    add_num(bignum *nbr1, bignum *nbr2, bignum *resultstruct);
+void    add_num(bignum *nbr1, bignum *nbr2, bignum **resultstruct);
+bignum  *normalize_add(bignum **nbr1, bignum **nbr2);
 
-
+/* Subtraction */
 bignum	*sub_bignum(bignum **nbr1, bignum **nbr2);
+bignum  *zero_sub(bignum **nbr1, bignum **nbr2);
+void    sub_num(bignum *nbr1, bignum *nbr2, bignum **resultstruct);
+bignum  *normalize_sub(bignum **nbr1, bignum **nbr2);
 
-
-
+/* Multiplication */
 bignum	*mult_bignum(bignum **nbr1, bignum **nbr2);
 
 
-
+/* Division */
 bignum	*div_bignum(bignum **nbr1, bignum **nbr2);
 
 
-
+/* Modulus */
 bignum	*mod_bignum(bignum **nbr1, bignum **nbr2);
 
 
@@ -66,6 +71,7 @@ bignum	*mod_bignum(bignum **nbr1, bignum **nbr2);
 char    *remalloc(char **result);
 void    zero_padif(bignum *nbr1, bignum *nbr2);
 void    zero_pad(bignum *nbr1, bignum *nbr2);
+int     nbrcompare(bignum *nbr1, bignum *nbr2);
 
 /* Misc. functions */
 int ft_atoi(char *str);
@@ -79,8 +85,8 @@ void	zero_pad(bignum *nbr1, bignum *nbr2);
 void	zero_padif(bignum *nbr1, bignum *nbr2);
 
 /* Misc. functions for setting struct */
-void	set_index_sign(bignum *nbrstruct);
-void	setNbr(bignum *nbrstruct, int count, char **expression);
+void	set_index_sign(bignum *nbrstruct, int neg);
+void	setNbr(bignum *nbrstruct, int count, char **expression, int neg);
 void	del_struct(bignum **nbr);
 /* Base Handling */
 
