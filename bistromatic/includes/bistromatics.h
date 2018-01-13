@@ -64,7 +64,7 @@ void	mult_num(bignum *nbr1, bignum *nbr2, bignum *resultstruct);
 
 /* Division */
 bignum	*div_bignum(bignum **nbr1, bignum **nbr2);
-
+bignum	*zero_div(bignum **nbr1, bignum **nbr2);
 
 /* Modulus */
 bignum	*mod_bignum(bignum **nbr1, bignum **nbr2);
@@ -81,7 +81,7 @@ int ft_atoi(char *str);
 void    set_bignumstruct(bignum *nbr1, bignum *nbr2, char *num1, char *num2);
 int ft_strlen(char *str);
 char	*ft_strdup(char *str);
-char    *ft_strnew(size_t size);
+char    *ft_strzero(void);
 void	bcharzero(char *result, int nbr);
 int		if_operators(char c);
 

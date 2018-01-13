@@ -22,20 +22,13 @@ void	bcharzero(char *result, int nbr)
 	result[i] = '\0';
 }
 
-char	*ft_strnew(size_t size)
+char	*ft_strzero(void)
 {
 	char *str;
-	size_t i;
 
-	i = 0;
-	str = malloc(sizeof(char) * (size + 1));
-	if (str == 0)
-		return (NULL);
-	else
-	{
-		while (i <= size)
-			str[i++] = 0;
-	}
+	str = malloc(sizeof(char) * 2);
+	str[0] = '0';
+	str[1] = '\0';
 	return (str);
 }
 

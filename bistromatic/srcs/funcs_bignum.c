@@ -43,7 +43,7 @@ char	*remalloc(char **result)
 	if (i == 0)
 		return (*result);	
 	if ((ft_strlen(*result) - i) == 0)
-		finale = ft_strnew(0);
+		finale = ft_strzero();
 	else
 	{
 		len = ft_strlen(*result);
