@@ -57,7 +57,10 @@ bignum  *normalize_sub(bignum **nbr1, bignum **nbr2);
 
 /* Multiplication */
 bignum	*mult_bignum(bignum **nbr1, bignum **nbr2);
-
+bignum	*zero_mult(bignum **nbr1, bignum **nbr2);
+void	mult_numadd(char *result, char *adder, int indexResult);
+void	mult_digit(bignum *nbr1, bignum *nbr2, char *adder, int padder);
+void	mult_num(bignum *nbr1, bignum *nbr2, bignum *resultstruct);
 
 /* Division */
 bignum	*div_bignum(bignum **nbr1, bignum **nbr2);
@@ -79,6 +82,8 @@ void    set_bignumstruct(bignum *nbr1, bignum *nbr2, char *num1, char *num2);
 int ft_strlen(char *str);
 char	*ft_strdup(char *str);
 char    *ft_strnew(size_t size);
+void	bcharzero(char *result, int nbr);
+int		if_operators(char c);
 
 /* Misc. functions for bignum */
 void	zero_pad(bignum *nbr1, bignum *nbr2);

@@ -6,11 +6,21 @@
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:53:51 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/11 18:53:17 by ttran            ###   ########.fr       */
+/*   Updated: 2018/01/12 20:24:27 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bistromatics.h"
+
+void	bcharzero(char *result, int nbr)
+{
+	int i;
+
+	i = 0;
+	while (i < nbr)
+		result[i++] = '0';
+	result[i] = '\0';
+}
 
 char	*ft_strnew(size_t size)
 {

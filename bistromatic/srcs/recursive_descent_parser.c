@@ -29,7 +29,8 @@ bignum	*grabNbr(char **expression)
 		(*expression)++;
 	if (counter != 0)
 	{
-		if (**expression == '-' && (*(*expression - 1) == '-' || *(*expression - 1) == '+') && (*(*expression + 1) >= '0' && *(*expression + 1) <= '9'))
+		if (**expression == '-' && if_operators(*(*expression - 1)) == 1 && 
+		(*(*expression + 1) >= '0' && *(*expression + 1) <= '9'))
 		{
 			neg *= -1;
 			(*expression)++;
