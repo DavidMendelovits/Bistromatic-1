@@ -12,19 +12,48 @@
 
 #include "bistromatics.h"
 
-int		nbrcompare(bignum *nbr1, bignum *nbr2)
+int		div_nbrcompare(bignum *nbr1, bignum *nbr2)
 {
 	int i;
+	int n;
 
-	i = 0;	
-	while ((nbr1->nbr)[i])
+	i = 0;
+	n = 0;
+	while (nbr1->nbr[i] == '0')
+		i++;
+	if (nbr1->i - i > nbr2->i)
+		return (1);
+	else if (nbr1->i - i < nbr2->i)
+		return (0);
+	while ((nbr1->nbr)[n + i])
 	{
-		if ((nbr1->nbr)[i] > (nbr2->nbr)[i])
-			return (1);
-		else if ((nbr1->nbr)[i] < (nbr2->nbr)[i])
+		if ((nbr1->nbr)[n + i] > (nbr2->nbr)[n])
+			return (1);	
+		else if ((nbr1->nbr)[n + i] < (nbr2->nbr)[n])
 			return (0);
 		else
-			i++;	
+			n++;
+	}
+	return (1);
+}
+
+int		nbrcompare(bignum *nbr1, bignum *nbr2)
+{
+	int n;
+
+	n = 0;	
+	if (nbr1->i > nbr2->i)
+		return (1);
+	else if (nbr1->i < nbr2->i)
+		return (0);
+	while ((nbr1->nbr)[n])
+	{
+		if ((nbr1->nbr)[n] > (nbr2->nbr)[n])
+			return (1);
+		else if ((nbr1->nbr)[n] < (nbr2->nbr)[n])
+			return (0);
+		else
+			n++;	
 	}
 	return (1);
 }

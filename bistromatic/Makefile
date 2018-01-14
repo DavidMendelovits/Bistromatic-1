@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = calc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 CC = gcc
 SRCS = srcs/main.c srcs/misc.c srcs/miscput.c srcs/recursive_descent_parser.c \
 	   srcs/mod_bignum.c srcs/mult_bignum.c srcs/sub_bignum.c \

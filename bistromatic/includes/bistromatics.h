@@ -22,6 +22,14 @@ typedef struct s_bignum
 	char *nbr;
 }	bignum;
 
+/* SS = space saver */
+typedef struct s
+{
+	int borrow;
+	int i1;
+	int i2;
+}	ss;
+
 /* Main function */
 int main(int argc, char **argv);
 
@@ -65,16 +73,22 @@ void	mult_num(bignum *nbr1, bignum *nbr2, bignum *resultstruct);
 /* Division */
 bignum	*div_bignum(bignum **nbr1, bignum **nbr2);
 bignum	*zero_div(bignum **nbr1, bignum **nbr2);
+void	div_num(bignum *nbr1, bignum *nbr2, bignum *resultstruct);
+int	div_numsub(bignum *nbr1, bignum *nbr2);
+void	num_subber(bignum *nbr1, bignum *nbr2, ss *s);
+void	num_i2sub(bignum *nbr1, ss *s);
 
 /* Modulus */
 bignum	*mod_bignum(bignum **nbr1, bignum **nbr2);
-
+bignum	*zero_mod(bignum **nbr1, bignum **nbr2);
+void	mod_num(bignum *nbr1, bignum *nbr2);
 
 /* Functions for bignum */
 char    *remalloc(char **result);
 void    zero_padif(bignum *nbr1, bignum *nbr2);
 void    zero_pad(bignum *nbr1, bignum *nbr2);
 int     nbrcompare(bignum *nbr1, bignum *nbr2);
+int		div_nbrcompare(bignum *nbr1, bignum *nbr2);
 
 /* Misc. functions */
 int ft_atoi(char *str);

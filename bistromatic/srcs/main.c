@@ -15,14 +15,15 @@
 int main(int argc, char **argv)
 {
 	char	*buffer;
-	int		bytes_read;
-
-	if (argc == 3)
+	//int		bytes_read;
+/* Change argc back to 3 later */
+	if (argc == 4)
 	{
-		bytes_read = ft_atoi(argv[2]); 
-		buffer = malloc(sizeof(char) * (bytes_read + 1));
-		buffer[bytes_read] = '\0';
-		read(0, buffer, bytes_read);
+		//bytes_read = ft_atoi(argv[2]); 
+		//buffer = malloc(sizeof(char) * (bytes_read + 1));
+		//buffer[bytes_read] = '\0';
+		buffer = ft_strdup(argv[3]);
+		// read(0, buffer, bytes_read);
 		recursive_descent_parser(buffer);		
 	}
 	else
