@@ -1,7 +1,0 @@
-{
-    "editor.insertSpaces": false,
-    "editor.renderWhitespace": "boundary",
-    "files.associations": {
-        "bistromatics.h": "c"
-    }
-}
